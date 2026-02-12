@@ -19,6 +19,8 @@ OpenClaw users are experiencing:
 
 **Intelligent context compression that reduces token usage by 40-60% without losing important information.**
 
+> 💡 **Want all 5 infrastructure tools in one command?** Check out the [OpenClaw Infrastructure Suite](https://github.com/AtlasPA/openclaw-infrastructure) - installs and manages Context Optimizer + 4 other tools (Cost Governor, Memory System, Smart Router, Rate Limit Manager) with unified dashboard and analytics.
+
 ## Features
 
 - ✅ **Smart Compression** - Reduces context size by 40-60%
