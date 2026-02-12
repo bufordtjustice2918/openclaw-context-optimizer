@@ -2,7 +2,7 @@
 name: context-optimizer
 description: Reduce context/token usage by 40-60% through intelligent compression, deduplication, and learning
 user-invocable: true
-metadata: {"openclaw":{"emoji":"⚡","requires":{"bins":["node"]},"os":["darwin","linux","win32"]}}
+metadata: {"openclaw":{"emoji":"⚡","requires":{"bins":["node"],"configPaths":["~/.openclaw/openclaw-context-optimizer"]},"os":["darwin","linux","win32"]}}
 ---
 
 # OpenClaw Context Optimizer
@@ -131,12 +131,36 @@ claw skill install openclaw-memory
 claw skill install openclaw-context-optimizer
 ```
 
-## Privacy
+## Privacy & Security
 
+**Data Storage:**
 - All data stored locally in `~/.openclaw/openclaw-context-optimizer/`
+- SQLite database contains: compression statistics, strategy effectiveness, token savings, timestamps
+- Compressed context is NOT stored - only compression metrics
+- Dashboard binds to localhost only (127.0.0.1) - not exposed to network
 - No external servers or telemetry
-- Compression happens locally (no API calls)
-- Open source - audit the code yourself
+
+**Data Retention:**
+- Free tier: 7 days of compression statistics
+- Pro tier: Unlimited retention (configurable)
+- You can delete all data anytime: `rm -rf ~/.openclaw/openclaw-context-optimizer/`
+
+**Payment Security:**
+- x402 payments require explicit user authorization via platform wallet
+- No private keys or credentials are stored by this skill
+- Payment subscriptions can be cancelled anytime
+- **IMPORTANT**: Review and approve any payment transactions before confirming
+- Skill does NOT have autonomous access to your wallet - payments require user consent
+
+**What This Skill Can See:**
+- Context structure: size, redundancy patterns, compressibility
+- Compression results: before/after token counts, strategy used
+- **Does NOT store**: actual context content, prompts, or responses
+
+**Audit & Trust:**
+- Open source - audit the code yourself at https://github.com/AtlasPA/openclaw-context-optimizer
+- Compression happens locally (no additional API calls)
+- Hooks are transparent: request:before, provider:after, session:end
 
 ## Dashboard
 
