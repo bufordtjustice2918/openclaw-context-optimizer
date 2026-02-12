@@ -1,5 +1,6 @@
 ---
 name: context-optimizer
+description: Reduce context/token usage by 40-60% through intelligent compression, deduplication, and learning
 user-invocable: true
 metadata: {"openclaw":{"emoji":"⚡","requires":{"bins":["node"]},"os":["darwin","linux","win32"]}}
 ---
