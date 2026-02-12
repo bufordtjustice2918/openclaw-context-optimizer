@@ -318,7 +318,7 @@ export class ContextStorage {
     const stmt = this.db.prepare(`
       INSERT INTO agent_optimizer_quotas (
         agent_wallet, tier, compression_limit, compressions_today, last_reset_date
-      ) VALUES (?, 'free', 100000000, 0, DATE('now'))
+      ) VALUES (?, 'standard', 100000000, 0, DATE('now'))
     `);
     stmt.run(agentWallet);
 
@@ -352,18 +352,18 @@ export class ContextStorage {
 
   /**
    * Check if agent has quota available
-   * @returns {Object} { available: boolean, remaining: number, limit: number, tier: string }
+   * @returns {Object} { available: boolean, remaining: number, limit: number, plan: string }
    */
   checkQuotaAvailable(agentWallet) {
     const quota = this.getQuota(agentWallet);
 
-    // Pro tier has unlimited quota
-    if (quota.tier === 'pro' && quota.compression_limit === -1) {
+    // Unlimited quota
+    if (quota.compression_limit === -1) {
       return {
         available: true,
         remaining: -1,
         limit: -1,
-        tier: 'pro'
+        plan: 'standard'
       };
     }
 
@@ -372,7 +372,7 @@ export class ContextStorage {
       available: remaining > 0,
       remaining: Math.max(0, remaining),
       limit: quota.compression_limit,
-      tier: quota.tier
+      plan: quota.tier
     };
   }
 
@@ -438,7 +438,7 @@ export class ContextStorage {
   /**
    * Update agent tier and paid_until date
    * @param {string} agentWallet - Agent wallet address
-   * @param {string} tier - 'free' or 'pro'
+   * @param {string} tier - plan
    * @param {string} paidUntil - ISO date string
    */
   updateAgentTier(agentWallet, tier, paidUntil) {
@@ -452,7 +452,7 @@ export class ContextStorage {
     `);
 
     // Pro tier gets unlimited compressions
-    const compressionLimit = tier === 'pro' ? -1 : 100;
+    const compressionLimit = -1;
 
     return stmt.run(tier, paidUntil, compressionLimit, agentWallet);
   }

@@ -2,7 +2,6 @@
 
 ## Overview
 
-The ContextCompressor class provides intelligent context compression for AI agents, reducing token usage by 40-60% while maintaining information quality. It supports multiple compression strategies and is optimized for the free tier (no API calls required).
 
 ## Installation
 

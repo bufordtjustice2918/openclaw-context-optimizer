@@ -16,7 +16,6 @@ async function setup() {
 
   try {
     // 1. Determine data directory
-    const dataDir = process.env.OPENCLAW_CONTEXT_DIR
       || join(homedir(), '.openclaw', 'openclaw-context-optimizer');
 
     console.log(`📁 Data directory: ${dataDir}`);
@@ -71,12 +70,9 @@ async function setup() {
     console.log('   ✅ Token usage tracking & savings analytics');
     console.log('   ✅ Pattern learning (redundant/high-value detection)');
     console.log('   ✅ Quality feedback & adaptive optimization');
-    console.log('   ✅ Quota management (free: 100/day, pro: unlimited)');
 
     // 8. Display pricing
     console.log('\n💰 Pricing:');
-    console.log('   Free Tier: 100 compressions/day');
-    console.log('   Pro Tier: Unlimited compressions');
 
     // 9. Display usage examples
     console.log('\n📚 Usage:');
@@ -104,16 +100,12 @@ async function setup() {
   } catch (error) {
     console.error('\n❌ Setup failed:', error.message);
     console.error(error.stack);
-    process.exit(1);
   }
 }
 
 // Run setup if called directly
-const isMainModule = process.argv[1] && import.meta.url.endsWith(process.argv[1].replace(/\\/g, '/'));
-if (isMainModule || process.argv[1]?.includes('setup.js')) {
   setup().catch(error => {
     console.error('Setup error:', error);
-    process.exit(1);
   });
 }
 

@@ -10,7 +10,6 @@
  * - Token usage tracking & savings analytics
  * - Pattern learning (redundant/high-value detection)
  * - Quality feedback & adaptive optimization
- * - Quota management (free: 100/day, pro: unlimited)
  * - (payments removed)
  */
 
@@ -39,7 +38,6 @@ export class ContextOptimizer {
 
   async beforeRequest(requestId, agentWallet, requestData) {
     try {
-      const context = requestData.context || requestData.prompt || requestData.query || '';
       if (!context || typeof context !== 'string') return;
 
       // Check quota
@@ -56,8 +54,6 @@ export class ContextOptimizer {
         // Update request data with compressed context
         if (typeof requestData.context === 'string') {
           requestData.context = result.compressed;
-        } else if (requestData.prompt) {
-          requestData.prompt = result.compressed;
         }
 
         // Store compression metrics for later use
@@ -135,7 +131,6 @@ export class ContextOptimizer {
     try {
       const quotaCheck = this.storage.checkQuotaAvailable(agentWallet);
       if (!quotaCheck.available) {
-        throw new Error('Compression quota exceeded. Upgrade to Pro for unlimited compressions.');
       }
 
       const result = await this.compressor.compress(text, strategy);
@@ -173,7 +168,7 @@ export class ContextOptimizer {
       return {
         ...stats,
         quota: {
-          tier: quota.tier,
+          tier: "standard",
           compressions_today: quota.compressions_today,
           compression_limit: quota.compression_limit,
           remaining: quota.compression_limit === -1 ? -1 : quota.compression_limit - quota.compressions_today
@@ -205,7 +200,7 @@ export class ContextOptimizer {
         total_tokens_saved: total.total_tokens_saved || 0,
         total_cost_saved: total.total_cost_saved || 0,
         avg_compression_ratio: total.overall_avg_ratio || 0,
-        tier: quota.tier,
+        tier: "standard",
         quota_remaining: quota.compression_limit === -1 ? -1 : (quota.compression_limit - quota.compressions_today),
         learned_patterns: patterns
       };

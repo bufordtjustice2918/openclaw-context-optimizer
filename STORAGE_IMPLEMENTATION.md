@@ -33,7 +33,6 @@ The core storage class implementing all database operations.
 #### Quota Management
 - `resetDailyQuotaIfNeeded(quota)` - Automatic daily reset
 
-#### Agent Tier Management
 
 - `hasTransaction(txHash)` - Check for duplicate transactions
 
@@ -109,10 +108,7 @@ Main entry point exporting the public API.
 
 **agent_optimizer_quotas**
 - Per-agent licensing
-- Unlimited tier: 100 compressions/day
-- Pro tier: unlimited compressions
 - Daily automatic reset
-- Paid subscription tracking
 
 **compression_feedback**
 - Quality feedback from compression results
@@ -127,7 +123,6 @@ Main entry point exporting the public API.
 - Completed blockchain transactions
 - Multi-chain support: Base, Solana, Ethereum
 - Verification status
-- Tier granted and duration
 
 ---
 
@@ -192,7 +187,6 @@ const quota = storage.checkQuotaAvailable('0xABC...');
 //   available: true,
 //   remaining: 99,
 //   limit: 100,
-//   tier: 'free'
 // }
 ```
 
@@ -230,12 +224,9 @@ const patterns = storage.getPatterns('0xABC...', 'redundant');
   token: 'USD',
   chain: 'base',
   verified: true,
-  tier_granted: 'pro',
   duration_months: 1
 });
 
-// Grant Pro tier
-storage.updateAgentTier('0xABC...', 'pro', '2026-03-12');
 ```
 
 ---
@@ -265,13 +256,11 @@ storage.updateAgentTier('0xABC...', 'pro', '2026-03-12');
 
 ## Quota System
 
-### Free Tier
 - **Limit:** 100 compressions per day
 - **Reset:** Automatic at midnight (local time)
 - **Cost:** Free
 - **Target:** Individual agents, testing
 
-### Pro Tier
 - **Limit:** Unlimited compressions
 - **Chains:** Base, Solana, Ethereum
 - **Target:** Production agents, high volume
@@ -288,7 +277,6 @@ The Context Optimizer integrates via hooks:
 
 1. Agent hits quota limit
 4. System verifies transaction
-5. Pro tier granted automatically
 6. Unlimited compressions enabled
 
 ---

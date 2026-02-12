@@ -77,7 +77,6 @@ program
       console.log('\nCompression Statistics:\n');
       console.log(`${'='.repeat(70)}`);
       console.log(`  Agent: ${options.wallet.substring(0, 10)}...`);
-      console.log(`  Tier: ${stats.tier.toUpperCase()}`);
       console.log(`${'='.repeat(70)}`);
       console.log(`\n  Total Compressions: ${stats.total_compressions.toLocaleString()}`);
       console.log(`  Total Tokens Saved: ${stats.total_tokens_saved.toLocaleString()}`);
@@ -87,7 +86,6 @@ program
       if (stats.quota_remaining !== -1) {
         console.log(`\n  Quota Today: ${stats.quota_remaining} remaining`);
       } else {
-        console.log(`\n  Quota: Unlimited (Pro tier)`);
       }
 
       if (stats.learned_patterns && stats.learned_patterns.length > 0) {

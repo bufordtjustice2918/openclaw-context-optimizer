@@ -30,7 +30,6 @@ export default async function sessionEnd(context) {
     console.log(`  Total Compressions: ${stats.total_compressions}`);
     console.log(`  Total Tokens Saved: ${stats.total_tokens_saved.toLocaleString()}`);
     console.log(`  Average Compression: ${(stats.avg_compression_ratio * 100).toFixed(1)}%`);
-    console.log(`  Tier: ${stats.tier.toUpperCase()}`);
 
     } else {
     }
@@ -46,14 +45,10 @@ export default async function sessionEnd(context) {
       console.log(`  Estimated Cost Saved: $${costSaved.toFixed(4)}`);
     }
 
-    // Check if approaching quota limit (free tier)
-    if (stats.tier === 'free' && stats.compression_limit > 0) {
       const usagePercent = (stats.total_compressions / stats.compression_limit) * 100;
       if (usagePercent >= 90) {
-        console.log(`\n  Warning: ${usagePercent.toFixed(0)}% of compression quota used!`);
         console.log(`  Consider upgrading to Pro for unlimited compressions.`);
       } else if (usagePercent >= 75) {
-        console.log(`\n  Info: ${usagePercent.toFixed(0)}% of compression quota used.`);
       }
     }
 

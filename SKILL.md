@@ -20,14 +20,11 @@ The first OpenClaw skill that **intelligently compresses context** to reduce tok
 - 💾 **Memory Integration** - Works with OpenClaw Memory System
 - 📊 **ROI Tracking** - Automatically calculates return on investment
 
-## Free vs Pro Tier
 
-**Free Tier:**
 - 100 compressions per day
 - All compression strategies
 - Basic statistics and ROI tracking
 
-**Pro Tier (0.5 USD/month):**
 - Unlimited compressions
 - Advanced learning algorithms
 - Priority compression
@@ -96,7 +93,6 @@ claw optimize dashboard
 
 ## Agent Economy
 
-Agents can autonomously evaluate if Pro tier is worth it:
 - **Cost:** 0.5 USD/month
 - **Value:** Saves 40-60% on token costs
 - **ROI:** If saves >0.5 USD/month in tokens, it pays for itself
@@ -158,7 +154,6 @@ Cost without optimizer: $10.28
 Cost with optimizer: $4.11
 Savings: $6.17
 
-Pro tier cost: $0.50/month
 Net savings: $5.67/month
 ROI: 1,134% 🎉
 ```
@@ -210,7 +205,6 @@ Strategy Performance:
 
 **Should you upgrade to Pro?**
 
-If you make enough API calls where 40-60% token savings exceed 0.5 USD/month, **Pro tier pays for itself**.
 
 **Typical savings:**
 - Small projects: $2-5/month saved → $1.50-4.50 profit

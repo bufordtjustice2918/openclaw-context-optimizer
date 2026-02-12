@@ -49,8 +49,8 @@ CREATE TABLE IF NOT EXISTS token_stats (
 -- Agent optimizer quotas (licensing)
 CREATE TABLE IF NOT EXISTS agent_optimizer_quotas (
   agent_wallet TEXT PRIMARY KEY,
-  tier TEXT DEFAULT 'free' NOT NULL, -- 'free' or 'pro'
-  compression_limit INTEGER DEFAULT 100, -- 100 compressions/day for free, -1 for unlimited
+  tier TEXT DEFAULT 'standard' NOT NULL
+  compression_limit INTEGER DEFAULT -1
   compressions_today INTEGER DEFAULT 0,
   last_reset_date DATE,
   paid_until DATETIME,
@@ -82,7 +82,7 @@ CREATE INDEX IF NOT EXISTS idx_patterns_importance ON compression_patterns(impor
 CREATE INDEX IF NOT EXISTS idx_token_stats_agent ON token_stats(agent_wallet);
 CREATE INDEX IF NOT EXISTS idx_token_stats_date ON token_stats(date DESC);
 
-CREATE INDEX IF NOT EXISTS idx_quotas_tier ON agent_optimizer_quotas(tier);
+CREATE INDEX IF NOT EXISTS idx_quotas_plan ON agent_optimizer_quotas(tier);
 CREATE INDEX IF NOT EXISTS idx_quotas_paid_until ON agent_optimizer_quotas(paid_until);
 
 CREATE INDEX IF NOT EXISTS idx_feedback_session ON compression_feedback(session_id);

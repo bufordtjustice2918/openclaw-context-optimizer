@@ -5,12 +5,8 @@
 
 **Features:**
 - Transaction verification (on-chain verification placeholder)
-- Quota enforcement (free vs pro tier)
 
 **Pricing:**
-- **Pro tier**: 0.5 USD/month (Base chain)
-- **Unlimited tier**: 100 compressions/day
-- **Pro tier**: Unlimited compressions
 
 **Key Methods:**
 ```javascript
@@ -40,7 +36,6 @@ async recordFeedback(sessionId, feedbackType, score, notes)
 
 **ContextStorage (`src/storage.js`)**
 - SQLite database with WAL mode
-- Quota management (free/pro tiers)
 - Compression session tracking
 - Pattern learning
 - Token savings analytics
@@ -63,7 +58,6 @@ async recordFeedback(sessionId, feedbackType, score, notes)
 - `compression_sessions`: Track each compression operation
 - `compression_patterns`: Learn compression patterns
 - `token_stats`: Daily token savings aggregation
-- `agent_optimizer_quotas`: Free/Pro tier quotas
 - `compression_feedback`: Quality feedback
 
 
@@ -157,7 +151,6 @@ import('./src/index.js').then(async module => {
 ## Key Features
 
 1. **Intelligent Compression**: 40-60% token reduction while maintaining quality
-2. **Quota Management**: Unlimited tier (unlimited) and Pro tier (unlimited)
 4. **Pattern Learning**: Improves compression over time
 5. **Quality Tracking**: Monitors compression effectiveness
 6. **Cost Savings**: Tracks token and cost reductions
