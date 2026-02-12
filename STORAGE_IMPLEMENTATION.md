@@ -109,7 +109,7 @@ Main entry point exporting the public API.
 
 **agent_optimizer_quotas**
 - Per-agent licensing
-- Free tier: 100 compressions/day
+- Unlimited tier: 100 compressions/day
 - Pro tier: unlimited compressions
 - Daily automatic reset
 - Paid subscription tracking

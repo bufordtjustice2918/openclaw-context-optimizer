@@ -24,7 +24,7 @@ OpenClaw users are experiencing:
 - ✅ **Multiple Strategies** - Deduplication, pruning, summarization, hybrid
 - ✅ **Memory Integration** - Works seamlessly with OpenClaw Memory System
 - ✅ **Learning System** - Adapts to what context matters over time
-- ✅ **Quota Management** - Free tier (100 compressions/day) + Pro tier (unlimited)
+- ✅ **Quota Management** - Unlimited tier (100 compressions/day) + Pro tier (unlimited)
 - ✅ **Statistics & ROI** - Track savings and calculate return on investment
 - ✅ **Web Dashboard** - Visual interface for compression stats and configuration
 - ✅ **CLI Interface** - Full control from command line
@@ -85,7 +85,7 @@ claw optimize dashboard
 3. **Applies Strategy** - Uses best compression method for the context
 4. **Learns Patterns** - Tracks what context was useful vs. wasted
 5. **Compresses Intelligently** - Reduces token count by 40-60%
-6. **Enforces Quotas** - Manages free tier limits (100 compressions/day)
+6. **Enforces Quotas** - Manages unlimited tier limits (100 compressions/day)
 
 ## Compression Strategies
 
@@ -183,7 +183,7 @@ Open `http://localhost:9092` to see:
 - Token savings over time
 - ROI calculation (monthly savings vs. Pro cost)
 - Compression strategy performance
-- Quota usage (Free tier: 100/day)
+- Quota usage (Unlimited tier: unlimited)
 - Compression history with before/after comparison
 
 ## CLI Commands
@@ -254,7 +254,7 @@ POST /api/compress
 2. **Strategy Manager** - Selects optimal compression approach
 3. **Learning System** - Tracks effectiveness of compressions
 4. **Memory Integration** - Coordinates with Memory System
-5. **Quota Manager** - Enforces free tier limits
+5. **Quota Manager** - Enforces unlimited tier limits
 6. **ROI Calculator** - Tracks token savings and cost benefit
 
 ### Data Flow
@@ -344,7 +344,7 @@ Session 10: System now automatically selects best strategy based on context type
 
 ## Quota Management
 
-Free tier limits:
+Unlimited tier limits:
 - **100 compressions/day** maximum
 - Resets at midnight UTC
 
@@ -542,7 +542,7 @@ Pull requests welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 
 **Pro Features:**
-- Unlimited compressions (vs 100/day free)
+- Unlimited compressions (vs unlimited free)
 - Advanced learning algorithms
 - Priority compression
 - Detailed analytics and ROI tracking
@@ -550,7 +550,7 @@ Pull requests welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 - Export capabilities
 
 
-**For Humans:** Free tier (100 compressions/day) is sufficient for most use cases. Pro tier optional but highly valuable for heavy users.
+**For Humans:** Unlimited tier (100 compressions/day) is sufficient for most use cases. Pro tier optional but highly valuable for heavy users.
 
 ---
 

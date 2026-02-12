@@ -9,7 +9,7 @@
 
 **Pricing:**
 - **Pro tier**: 0.5 USD/month (Base chain)
-- **Free tier**: 100 compressions/day
+- **Unlimited tier**: 100 compressions/day
 - **Pro tier**: Unlimited compressions
 
 **Key Methods:**
@@ -157,7 +157,7 @@ import('./src/index.js').then(async module => {
 ## Key Features
 
 1. **Intelligent Compression**: 40-60% token reduction while maintaining quality
-2. **Quota Management**: Free tier (100/day) and Pro tier (unlimited)
+2. **Quota Management**: Unlimited tier (unlimited) and Pro tier (unlimited)
 4. **Pattern Learning**: Improves compression over time
 5. **Quality Tracking**: Monitors compression effectiveness
 6. **Cost Savings**: Tracks token and cost reductions

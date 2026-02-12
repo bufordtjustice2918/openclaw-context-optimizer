@@ -318,7 +318,7 @@ export class ContextStorage {
     const stmt = this.db.prepare(`
       INSERT INTO agent_optimizer_quotas (
         agent_wallet, tier, compression_limit, compressions_today, last_reset_date
-      ) VALUES (?, 'free', 100, 0, DATE('now'))
+      ) VALUES (?, 'free', 100000000, 0, DATE('now'))
     `);
     stmt.run(agentWallet);
 
