@@ -8,7 +8,6 @@ import { ContextStorage } from './storage.js';
  *
  * Initializes the SQLite database with:
  * - Core compression tables (001-init.sql)
- * - x402 payment tables (002-x402-payments.sql)
  * - WAL mode for better concurrency
  */
 
@@ -41,7 +40,6 @@ async function setup() {
     console.log('\n🔧 Running migrations...');
 
     console.log('   [1/2] Creating compression tables (001-init.sql)...');
-    console.log('   [2/2] Creating x402 payment tables (002-x402-payments.sql)...');
 
     storage.initialize();
 
@@ -74,13 +72,11 @@ async function setup() {
     console.log('   ✅ Pattern learning (redundant/high-value detection)');
     console.log('   ✅ Quality feedback & adaptive optimization');
     console.log('   ✅ Quota management (free: 100/day, pro: unlimited)');
-    console.log('   ✅ x402 payment protocol (0.5 USDT/month for Pro tier)');
 
     // 8. Display pricing
     console.log('\n💰 Pricing:');
     console.log('   Free Tier: 100 compressions/day');
     console.log('   Pro Tier: Unlimited compressions');
-    console.log('   Pro Price: 0.5 USDT/month (via x402)');
 
     // 9. Display usage examples
     console.log('\n📚 Usage:');

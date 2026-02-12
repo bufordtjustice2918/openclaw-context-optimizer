@@ -11,7 +11,7 @@
  * - Pattern learning (redundant/high-value detection)
  * - Quality feedback & adaptive optimization
  * - Quota management (free: 100/day, pro: unlimited)
- * - x402 payment protocol (0.5 USDT/month for Pro tier)
+ * - (payments removed)
  */
 
 import { homedir } from 'os';
@@ -21,7 +21,6 @@ import { randomUUID } from 'crypto';
 import { ContextStorage } from './storage.js';
 import { ContextCompressor } from './compressor.js';
 import { ContextAnalyzer } from './analyzer.js';
-import { X402PaymentHandler } from './x402.js';
 
 export class ContextOptimizer {
   constructor(options = {}) {
@@ -34,7 +33,6 @@ export class ContextOptimizer {
     this.storage = new ContextStorage(this.dbPath);
     this.compressor = new ContextCompressor(this.storage);
     this.analyzer = new ContextAnalyzer(this.storage);
-    this.x402 = new X402PaymentHandler(this.storage);
 
     console.log(`[ContextOptimizer] Initialized`);
   }
@@ -128,18 +126,6 @@ export class ContextOptimizer {
   async sessionEnd(sessionId, agentWallet) {
     try {
       const stats = this.storage.getTotalSavings(agentWallet);
-      const license = this.x402.hasValidLicense(agentWallet);
-
-      console.log(`\n[ContextOptimizer] Session ${sessionId} complete`);
-      console.log(`  Total compressions: ${stats.total_compressions || 0}`);
-      console.log(`  Total tokens saved: ${(stats.total_tokens_saved || 0).toLocaleString()}`);
-      console.log(`  Estimated cost saved: $${(stats.total_cost_saved || 0).toFixed(4)}`);
-
-      if (license.valid) {
-        console.log(`  License: Pro (${license.days_remaining} days remaining)`);
-      } else {
-        console.log(`  License: Free tier`);
-      }
     } catch (error) {
       console.error('[ContextOptimizer] Error in sessionEnd:', error.message);
     }
@@ -235,29 +221,8 @@ export class ContextOptimizer {
       throw new Error(`Failed to get patterns: ${error.message}`);
     }
   }
-
-  async createPaymentRequest(agentWallet) {
-    try {
-      return await this.x402.createPaymentRequest(agentWallet);
-    } catch (error) {
-      throw new Error(`Failed to create payment request: ${error.message}`);
-    }
   }
-
-  async verifyPayment(requestId, txHash, agentWallet) {
-    try {
-      return await this.x402.verifyPayment(requestId, txHash, agentWallet);
-    } catch (error) {
-      throw new Error(`Failed to verify payment: ${error.message}`);
-    }
   }
-
-  checkLicense(agentWallet) {
-    try {
-      return this.x402.hasValidLicense(agentWallet);
-    } catch (error) {
-      throw new Error(`Failed to check license: ${error.message}`);
-    }
   }
 
   close() {
@@ -286,7 +251,6 @@ export function resetContextOptimizer() {
 export { ContextStorage } from './storage.js';
 export { ContextCompressor } from './compressor.js';
 export { ContextAnalyzer } from './analyzer.js';
-export { X402PaymentHandler } from './x402.js';
 export { setup } from './setup.js';
 
 export default ContextOptimizer;

@@ -77,16 +77,7 @@ async function testStorage() {
     console.log('   Updated quota:', JSON.stringify(updatedQuota, null, 2));
     console.log('   ✅ Compression count incremented');
 
-    // Test 8: Record payment request
-    console.log('\n8️⃣ Testing recordPaymentRequest...');
-    storage.recordPaymentRequest('req-001', '0x1234567890abcdef', 0.5, 'USDT');
-    console.log('   ✅ Payment request recorded');
 
-    // Test 9: Get payment request
-    console.log('\n9️⃣ Testing getPaymentRequest...');
-    const paymentReq = storage.getPaymentRequest('req-001');
-    console.log('   Payment request:', JSON.stringify(paymentReq, null, 2));
-    console.log('   ✅ Payment request retrieved');
 
     // Test 10: Record feedback
     console.log('\n🔟 Testing recordFeedback...');

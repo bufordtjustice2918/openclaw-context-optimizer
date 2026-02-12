@@ -4,7 +4,6 @@
 
 Stop burning tokens on redundant context. Context Optimizer intelligently compresses conversation history, deduplicates information, and learns what context actually matters - all while seamlessly integrating with OpenClaw Memory System.
 
-🤖 **Agent-powered economy** - agents can autonomously pay 0.5 USDT/month for unlimited compressions. [Agent Payments →](AGENT-PAYMENTS.md)
 
 ## The Problem
 
@@ -29,7 +28,6 @@ OpenClaw users are experiencing:
 - ✅ **Statistics & ROI** - Track savings and calculate return on investment
 - ✅ **Web Dashboard** - Visual interface for compression stats and configuration
 - ✅ **CLI Interface** - Full control from command line
-- 🤖 **x402 Agent Payments** - Agents can autonomously pay for Pro tier (0.5 USDT/month)
 
 ## Why Context Optimizer?
 
@@ -41,7 +39,6 @@ OpenClaw users are experiencing:
 | Learning System | ✅ | ❌ | ❌ | ✅ |
 | Multiple Strategies | ✅ | ❌ | ❌ | ❌ |
 | Memory Integration | ✅ | ❌ | ❌ | ✅ |
-| x402 Payments | ✅ | ❌ | ❌ | ✅ |
 | **ROI Tracking** | ✅ | ❌ | ❌ | ❌ |
 | ClawHub Skill | ✅ | ❌ | ❌ | ✅ |
 | Free Tier | ✅ | ✅ | ❓ | ✅ |
@@ -49,7 +46,7 @@ OpenClaw users are experiencing:
 
 **Context Optimizer + Memory System = Maximum Efficiency**
 
-Economic rationale: If compression saves your agent >0.5 USDT/month in reduced tokens, it pays for itself. No human approval needed.
+Economic rationale: If compression saves your agent >0.5 USD/month in reduced tokens, it pays for itself. No human approval needed.
 
 ## Installation
 
@@ -79,8 +76,6 @@ claw optimize history --limit=10
 # Open dashboard
 claw optimize dashboard
 
-# Check license status
-claw optimize license
 ```
 
 ## How It Works
@@ -142,7 +137,7 @@ The system offers multiple compression strategies that can be used individually 
 - ✅ Web dashboard
 - ✅ CLI interface
 
-### Pro Tier (0.5 USDT/month)
+### Pro Tier (0.5 USD/month)
 - ✅ **Unlimited compressions**
 - ✅ **Advanced learning** - better pattern recognition
 - ✅ **Priority compression** - faster processing
@@ -151,7 +146,6 @@ The system offers multiple compression strategies that can be used individually 
 - ✅ **Custom strategies** - configure your own rules
 - ✅ **Priority support**
 
-**[→ Upgrade to Pro via x402](AGENT-PAYMENTS.md)**
 
 ## ROI Calculation
 
@@ -170,12 +164,11 @@ If you make 60 requests/day:
 - Net profit: $15.70/month
 ```
 
-**Bottom line:** If Context Optimizer saves you >0.5 USDT/month, **it pays for itself**.
+**Bottom line:** If Context Optimizer saves you >0.5 USD/month, **it pays for itself**.
 
 ## Configuration
 
 During setup, you'll configure:
-- Agent wallet address (for quota tracking)
 - Default compression strategy (dedup, prune, summarize, hybrid)
 - Compression aggressiveness (conservative, balanced, aggressive)
 - Memory System integration (if installed)
@@ -191,7 +184,6 @@ Open `http://localhost:9092` to see:
 - ROI calculation (monthly savings vs. Pro cost)
 - Compression strategy performance
 - Quota usage (Free tier: 100/day)
-- License status and upgrade options
 - Compression history with before/after comparison
 
 ## CLI Commands
@@ -215,11 +207,7 @@ claw optimize roi
 # Test strategy on sample
 claw optimize test --strategy=summarize --file=sample.txt
 
-# Check license status
-claw optimize license
 
-# Subscribe to Pro tier
-claw optimize subscribe
 
 # Start dashboard
 claw optimize dashboard --port 9092
@@ -236,7 +224,6 @@ Context Optimizer provides a REST API for programmatic access:
 # Compress context
 POST /api/compress
 {
-  "agent_wallet": "0x...",
   "context": "Long context to compress...",
   "strategy": "hybrid"
 }
@@ -252,18 +239,11 @@ POST /api/compress
 }
 
 # Get compression stats
-GET /api/stats?agent_wallet=0x...
 
 # Get compression history
-GET /api/history?agent_wallet=0x...&limit=10
 
 # Calculate ROI
-GET /api/roi?agent_wallet=0x...
 
-# x402 payment endpoints
-POST /api/x402/subscribe
-POST /api/x402/verify
-GET /api/x402/license/:wallet
 ```
 
 ## Architecture
@@ -276,7 +256,6 @@ GET /api/x402/license/:wallet
 4. **Memory Integration** - Coordinates with Memory System
 5. **Quota Manager** - Enforces free tier limits
 6. **ROI Calculator** - Tracks token savings and cost benefit
-7. **x402 Handler** - Manages autonomous agent payments
 
 ### Data Flow
 
@@ -334,7 +313,6 @@ All data is stored locally in SQLite:
 - Compression history and statistics
 - Strategy performance metrics
 - Learning data (what worked, what didn't)
-- Payment records
 
 ## Privacy
 
@@ -452,7 +430,6 @@ claw optimize dashboard --port 9093
 
 **Compression not working:**
 ```bash
-# Verify hooks are installed
 ls ~/.openclaw/hooks/
 
 # Check logs
@@ -468,7 +445,6 @@ claw optimize compress "Test context" --strategy=hybrid
 claw optimize stats
 
 # Upgrade to Pro
-claw optimize subscribe
 ```
 
 **Low compression rate:**
@@ -561,13 +537,9 @@ Found a bug? Have a feature request? [Open an issue](https://github.com/AtlasPA/
 
 Pull requests welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-## License
 
-MIT License - see [LICENSE](LICENSE) file.
 
-## Pro Tier (x402 Payments)
 
-**For AI Agents:** Upgrade to Pro tier by paying 0.5 USDT/month via x402 protocol.
 
 **Pro Features:**
 - Unlimited compressions (vs 100/day free)
@@ -577,7 +549,6 @@ MIT License - see [LICENSE](LICENSE) file.
 - Custom compression rules
 - Export capabilities
 
-**[→ Agent Payment Instructions](AGENT-PAYMENTS.md)**
 
 **For Humans:** Free tier (100 compressions/day) is sufficient for most use cases. Pro tier optional but highly valuable for heavy users.
 
@@ -588,7 +559,6 @@ MIT License - see [LICENSE](LICENSE) file.
 If Context Optimizer saved you money on token costs, consider sponsoring development:
 
 ☕ **[Sponsor on GitHub](https://github.com/sponsors/AtlasPA)**
-🤖 **[Pay via x402](AGENT-PAYMENTS.md)** (for AI agents)
 
 Your sponsorship helps maintain this and other OpenClaw tools.
 

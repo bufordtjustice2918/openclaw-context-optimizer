@@ -18,7 +18,6 @@ The first OpenClaw skill that **intelligently compresses context** to reduce tok
 - 🧠 **Learning System** - Adapts to what context matters in your workflow
 - 🔄 **Multiple Strategies** - Dedup, prune, summarize, hybrid
 - 💾 **Memory Integration** - Works with OpenClaw Memory System
-- 💰 **x402 Payments** - Agents can pay for unlimited compressions (0.5 USDT/month)
 - 📊 **ROI Tracking** - Automatically calculates return on investment
 
 ## Free vs Pro Tier
@@ -28,7 +27,7 @@ The first OpenClaw skill that **intelligently compresses context** to reduce tok
 - All compression strategies
 - Basic statistics and ROI tracking
 
-**Pro Tier (0.5 USDT/month):**
+**Pro Tier (0.5 USD/month):**
 - Unlimited compressions
 - Advanced learning algorithms
 - Priority compression
@@ -59,8 +58,6 @@ claw optimize roi
 # Open dashboard
 claw optimize dashboard
 
-# Subscribe to Pro
-claw optimize subscribe
 ```
 
 ## How It Works
@@ -100,9 +97,9 @@ claw optimize subscribe
 ## Agent Economy
 
 Agents can autonomously evaluate if Pro tier is worth it:
-- **Cost:** 0.5 USDT/month
+- **Cost:** 0.5 USD/month
 - **Value:** Saves 40-60% on token costs
-- **ROI:** If saves >0.5 USDT/month in tokens, it pays for itself
+- **ROI:** If saves >0.5 USD/month in tokens, it pays for itself
 
 **Example:**
 ```
@@ -115,7 +112,6 @@ Pro cost: $0.50/month
 Net profit: $15.70/month
 ```
 
-See [AGENT-PAYMENTS.md](AGENT-PAYMENTS.md) for x402 integration details.
 
 ## Memory System Integration
 
@@ -145,7 +141,6 @@ Access web UI at `http://localhost:9092`:
 - ROI calculation (savings vs. Pro cost)
 - Strategy performance comparison
 - Compression history with before/after view
-- Quota usage and license status
 
 ## ROI Tracking
 
@@ -181,21 +176,14 @@ ROI: 1,134% 🎉
 # Compress context
 POST /api/compress
 {
-  "agent_wallet": "0x...",
   "context": "Long context...",
   "strategy": "hybrid"
 }
 
 # Get stats
-GET /api/stats?agent_wallet=0x...
 
 # Get ROI analysis
-GET /api/roi?agent_wallet=0x...
 
-# x402 payment endpoints
-POST /api/x402/subscribe
-POST /api/x402/verify
-GET /api/x402/license/:wallet
 ```
 
 ## Statistics Example
@@ -222,7 +210,7 @@ Strategy Performance:
 
 **Should you upgrade to Pro?**
 
-If you make enough API calls where 40-60% token savings exceed 0.5 USDT/month, **Pro tier pays for itself**.
+If you make enough API calls where 40-60% token savings exceed 0.5 USD/month, **Pro tier pays for itself**.
 
 **Typical savings:**
 - Small projects: $2-5/month saved → $1.50-4.50 profit
@@ -232,10 +220,8 @@ If you make enough API calls where 40-60% token savings exceed 0.5 USDT/month, *
 ## Links
 
 - [Documentation](README.md)
-- [Agent Payments Guide](AGENT-PAYMENTS.md)
 - [GitHub Repository](https://github.com/AtlasPA/openclaw-context-optimizer)
 - [ClawHub Page](https://clawhub.ai/skills/context-optimizer)
 
 ---
 
-**Built by the OpenClaw community** | First context optimizer with x402 payments

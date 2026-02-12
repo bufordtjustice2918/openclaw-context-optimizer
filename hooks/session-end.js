@@ -21,8 +21,6 @@ export default async function sessionEnd(context) {
     // Get session statistics
     const stats = await optimizer.stats.getStats(agentWallet);
 
-    // Check license status
-    const license = optimizer.x402.hasValidLicense(agentWallet);
 
     // Log session summary
     console.log(`\n========================================`);
@@ -34,12 +32,7 @@ export default async function sessionEnd(context) {
     console.log(`  Average Compression: ${(stats.avg_compression_ratio * 100).toFixed(1)}%`);
     console.log(`  Tier: ${stats.tier.toUpperCase()}`);
 
-    if (license.valid) {
-      console.log(`  License: Active (expires in ${license.days_remaining} days)`);
-    } else if (license.expired) {
-      console.log(`  License: EXPIRED - Upgrade to continue with advanced compression`);
     } else {
-      console.log(`  License: Free tier - Basic compression (40% reduction)`);
     }
 
     // Show compression effectiveness
@@ -59,7 +52,6 @@ export default async function sessionEnd(context) {
       if (usagePercent >= 90) {
         console.log(`\n  Warning: ${usagePercent.toFixed(0)}% of compression quota used!`);
         console.log(`  Consider upgrading to Pro for unlimited compressions.`);
-        console.log(`  Run: openclaw context-optimizer subscribe`);
       } else if (usagePercent >= 75) {
         console.log(`\n  Info: ${usagePercent.toFixed(0)}% of compression quota used.`);
       }

@@ -6,8 +6,6 @@
  * - compress: Test compression on text
  * - stats: Show compression statistics
  * - patterns: List learned patterns
- * - license: Check license status
- * - subscribe: Subscribe to Pro tier
  */
 
 import { Command } from 'commander';
@@ -153,10 +151,7 @@ program
     }
   });
 
-// License command
 program
-  .command('license')
-  .description('Check license status')
   .option('--wallet <wallet>', 'Agent wallet address (required)')
   .action(async (options) => {
     try {
@@ -166,26 +161,17 @@ program
       }
 
       const optimizer = getContextOptimizer();
-      const license = optimizer.checkLicense(options.wallet);
 
-      console.log('\nLicense Status:\n');
       console.log(`${'='.repeat(70)}`);
       console.log(`  Agent: ${options.wallet.substring(0, 10)}...`);
-      console.log(`  Tier: ${license.tier.toUpperCase()}`);
 
-      if (license.valid) {
         console.log(`  Status: Active`);
-        console.log(`  Expires: ${new Date(license.expires).toLocaleDateString()}`);
-        console.log(`  Days Remaining: ${license.days_remaining}`);
         console.log('\n  Pro Features:');
         console.log('    - Unlimited daily compressions');
         console.log('    - Advanced compression strategies');
         console.log('    - Pattern learning optimization');
         console.log('    - Priority support');
-      } else if (license.expired) {
         console.log(`  Status: EXPIRED`);
-        console.log('\n  Your Pro license has expired.');
-        console.log('  Run "openclaw context-optimizer subscribe" to renew.');
       } else {
         console.log(`  Status: FREE TIER`);
         console.log('\n  Free Tier Limits:');
@@ -198,7 +184,6 @@ program
         console.log('    - Full pattern learning');
         console.log('    - Priority support');
         console.log('\n  Price: 0.5 USDT/month on Base');
-        console.log('  Run "openclaw context-optimizer subscribe" to upgrade.');
       }
 
       console.log(`${'='.repeat(70)}\n`);
@@ -209,10 +194,7 @@ program
     }
   });
 
-// Subscribe command
 program
-  .command('subscribe')
-  .description('Subscribe to Pro tier (unlimited compressions)')
   .option('--wallet <wallet>', 'Agent wallet address (required)')
   .action(async (options) => {
     try {
@@ -222,29 +204,24 @@ program
       }
 
       const optimizer = getContextOptimizer();
-      const paymentRequest = await optimizer.createPaymentRequest(options.wallet);
 
-      console.log('\nSubscribe to Context Optimizer Pro\n');
       console.log(`${'='.repeat(70)}`);
       console.log('  Price: 0.5 USDT/month');
       console.log('  Chain: Base');
-      console.log('  Protocol: x402');
+      console.log('  Protocol: ');
       console.log(`${'='.repeat(70)}\n`);
 
-      console.log('Payment Request Details:\n');
-      console.log(`  Request ID: ${paymentRequest.request_id}`);
-      console.log(`  Recipient: ${paymentRequest.recipient}`);
-      console.log(`  Amount: ${paymentRequest.amount} ${paymentRequest.token}`);
-      console.log(`  Chain: ${paymentRequest.chain}`);
-      console.log(`  Expires: ${new Date(paymentRequest.expires_at).toLocaleString()}\n`);
+      console.log(`  Request ID: ${request.request_id}`);
+      console.log(`  Recipient: ${request.recipient}`);
+      console.log(`  Amount: ${request.amount} ${request.token}`);
+      console.log(`  Chain: ${request.chain}`);
+      console.log(`  Expires: ${new Date(request.expires_at).toLocaleString()}\n`);
 
       console.log('Instructions:\n');
-      console.log('  1. Send 0.5 USDT to the recipient address via x402 protocol');
-      console.log('  2. After payment, verify with your transaction hash:\n');
-      console.log(`     curl -X POST http://localhost:9092/api/x402/verify \\`);
+      console.log('  1. Send 0.5 USDT to the recipient address via  protocol');
       console.log(`       -H "Content-Type: application/json" \\`);
       console.log(`       -d '{`);
-      console.log(`         "request_id": "${paymentRequest.request_id}",`);
+      console.log(`         "request_id": "${request.request_id}",`);
       console.log(`         "tx_hash": "YOUR_TX_HASH",`);
       console.log(`         "agent_wallet": "${options.wallet}"`);
       console.log(`       }'\n`);

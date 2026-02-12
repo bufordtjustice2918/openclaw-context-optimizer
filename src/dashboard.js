@@ -1,7 +1,6 @@
 /**
  * OpenClaw Context Optimizer - REST API Dashboard
  *
- * Provides HTTP endpoints for compression operations and x402 payment integration.
  * Port: 9092 (to avoid conflict with Memory System on 9091 and Cost Governor on 9090)
  */
 
@@ -214,108 +213,12 @@ app.post('/api/feedback', async (req, res) => {
 });
 
 // ============================================================================
-// x402 Payment Endpoints
-// ============================================================================
-
-/**
- * POST /api/x402/subscribe
- * Create a payment request for Pro tier subscription
- *
- * Body:
- * {
- *   "agent_wallet": "0x..."
- * }
- */
-app.post('/api/x402/subscribe', async (req, res) => {
-  try {
-    const { agent_wallet } = req.body;
-
-    if (!agent_wallet) {
-      return res.status(400).json({ error: 'agent_wallet is required' });
     }
 
     const optimizer = getContextOptimizer();
-    const paymentRequest = await optimizer.createPaymentRequest(agent_wallet);
-
-    res.json({
-      success: true,
-      payment_request: paymentRequest,
-      instructions: 'Send 0.5 USDT via x402 protocol, then call /api/x402/verify with tx_hash',
-      pricing: {
-        amount: '0.5 USDT/month',
-        features: [
-          'Unlimited daily compressions',
-          'Advanced compression strategies',
-          'Full pattern learning',
-          'Priority support'
-        ]
-      }
-    });
-  } catch (error) {
-    console.error('[Dashboard] Error creating payment request:', error);
-    res.status(500).json({
-      error: error.message,
-      details: process.env.NODE_ENV === 'development' ? error.stack : undefined
-    });
-  }
-});
-
-/**
- * POST /api/x402/verify
- * Verify payment and activate Pro tier
- *
- * Body:
- * {
- *   "request_id": "...",
- *   "tx_hash": "0x...",
- *   "agent_wallet": "0x..."
- * }
- */
-app.post('/api/x402/verify', async (req, res) => {
-  try {
-    const { request_id, tx_hash, agent_wallet } = req.body;
-
-    if (!request_id || !tx_hash || !agent_wallet) {
-      return res.status(400).json({
-        error: 'request_id, tx_hash, and agent_wallet are required'
-      });
-    }
-
-    const optimizer = getContextOptimizer();
-    const result = await optimizer.verifyPayment(request_id, tx_hash, agent_wallet);
-
-    res.json({
-      success: true,
-      ...result,
-      message: 'Payment verified! Pro tier activated - unlimited compressions.'
-    });
-  } catch (error) {
-    console.error('[Dashboard] Error verifying payment:', error);
-    res.status(400).json({
-      error: error.message,
-      details: process.env.NODE_ENV === 'development' ? error.stack : undefined
-    });
-  }
-});
-
-/**
- * GET /api/x402/license/:wallet
- * Check license status for an agent wallet
- */
-app.get('/api/x402/license/:wallet', (req, res) => {
-  try {
-    const agentWallet = req.params.wallet;
-
-    if (!agentWallet) {
-      return res.status(400).json({ error: 'wallet address is required' });
-    }
-
-    const optimizer = getContextOptimizer();
-    const license = optimizer.checkLicense(agentWallet);
 
     res.json({
       agent_wallet: agentWallet,
-      ...license,
       pricing: {
         pro_monthly: '0.5 USDT/month',
         features: [
@@ -327,7 +230,6 @@ app.get('/api/x402/license/:wallet', (req, res) => {
       }
     });
   } catch (error) {
-    console.error('[Dashboard] Error checking license:', error);
     res.status(500).json({
       error: error.message,
       details: process.env.NODE_ENV === 'development' ? error.stack : undefined
@@ -375,9 +277,6 @@ app.listen(port, () => {
   console.log(`    GET    /api/stats                 Get statistics`);
   console.log(`    GET    /api/patterns              Get learned patterns`);
   console.log(`    POST   /api/feedback              Submit feedback`);
-  console.log(`    POST   /api/x402/subscribe        Create payment request`);
-  console.log(`    POST   /api/x402/verify           Verify payment`);
-  console.log(`    GET    /api/x402/license/:wallet  Check license status`);
   console.log(`\n${'='.repeat(70)}`);
   console.log(`  Press Ctrl+C to stop\n`);
 });
