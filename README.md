@@ -19,7 +19,7 @@ OpenClaw users are experiencing:
 
 **Intelligent context compression that reduces token usage by 40-60% without losing important information.**
 
-> 💡 **Want all 5 infrastructure tools in one command?** Check out the [OpenClaw Infrastructure Suite](https://github.com/AtlasPA/openclaw-infrastructure) - installs and manages Context Optimizer + 4 other tools (Cost Governor, Memory System, Smart Router, Rate Limit Manager) with unified dashboard and analytics.
+> 💡 **Want all 5 infrastructure tools in one command?** Check out the [OpenClaw Infrastructure Suite](https://github.com/AtlasPA/openclaw-infrastructure) - installs and manages Context Optimizer + 4 other tools (Cost Governor, Memory System, Smart Router, API Quota Tracker) with unified dashboard and analytics.
 
 ## Features
 
@@ -603,7 +603,7 @@ Context Optimizer is part of the growing OpenClaw efficiency suite:
 1. **Memory System** - Persistent memory across sessions (install first!)
 2. **Context Optimizer** - Intelligent compression (you are here)
 3. **Smart Router** - Route requests to cheapest/fastest provider
-4. **Rate Limit Manager** - Prevent quota exhaustion
+4. **API Quota Tracker** - Prevent quota exhaustion
 
 Install the full suite for maximum efficiency and cost savings.
 
